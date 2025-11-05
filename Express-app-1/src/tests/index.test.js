@@ -23,6 +23,8 @@ describe('User Endpoints', () => {
 });
 
 
+// whenever we write the test cases include all the path inside the mondule 
+
 describe("Testing /sum Api", ()=>{
 
     it("should give 1+2 equal to 3", async()=>{
@@ -33,4 +35,14 @@ describe("Testing /sum Api", ()=>{
         expect(res.statusCode).toBe(200);
         expect(res.body.answer).toBe(3);
     })
+
+   it("should give error", async()=>{
+        const res= await request.get('/sum').send({
+            a: 1,
+        })
+        expect(res.statusCode).toBe(411);
+        expect(res.body.message).toBe("Incorrect inputs");
+    })
+
+    
 })
